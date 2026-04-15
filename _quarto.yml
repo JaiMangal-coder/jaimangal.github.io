@@ -7,17 +7,18 @@ website:
   sidebar:
     style: "docked"
     search: false
-  contents:
-    - href: index.qmd
-      text: Home
-    - about.qmd
-    - Lab2/Lab2WriteUp.qmd
-    - Lab3/Lab3WriteUp.qmd
-    - Lab4/Lab4WriteUp.qmd
-    - Lab5-6/Lab5WriteUp.qmd
-    - Lab8/Lab8WriteUp.qmd
-    - Lab10/Lab10WriteUp.qmd
-    - Lab11/Lab11WriteUp.qmd
+    
+    contents:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+      - Lab2/Lab2WriteUp.qmd
+      - Lab3/Lab3WriteUp.qmd
+      - Lab4/Lab4WriteUp.qmd
+      - Lab5-6/Lab5WriteUp.qmd
+      - Lab8/Lab8WriteUp.qmd
+      - Lab10/Lab10WriteUp.qmd
+      - Lab11/Lab11WriteUp.qmd
 
 format:
   html:
