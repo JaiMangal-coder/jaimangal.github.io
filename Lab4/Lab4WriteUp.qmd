@@ -279,7 +279,7 @@ Install and load the `rvest` package [@rvest].
 I install and load the library here. I put eval: false, so it doesnt run every time I preview the doc. 
 ```{r}
 #| size: "scriptsize"
-#| eval: FALSE
+#| eval: false
 
 install.packages("rvest")
 ```

@@ -340,8 +340,7 @@ Figure&nbsp;1: The unit square.
 <p>We first need to make Matrix M:</p>
 <p></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># I'm going to annoy you with using only by column</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>(<span class="at">M =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">nrow =</span> <span class="dv">2</span>,<span class="at">ncol =</span> <span class="dv">2</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>(<span class="at">M =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">nrow =</span> <span class="dv">2</span>,<span class="at">ncol =</span> <span class="dv">2</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2]
 [1,]    1    0
@@ -664,7 +663,7 @@ Figure&nbsp;3: Matrix T (ver. 2) on a Graph.
 <span id="cb56-9"><a href="#cb56-9"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"x"</span>, </span>
 <span id="cb56-10"><a href="#cb56-10"></a>       <span class="at">y =</span> <span class="st">"y"</span>)</span>
 <span id="cb56-11"><a href="#cb56-11"></a></span>
-<span id="cb56-12"><a href="#cb56-12"></a>(<span class="fu">det</span>(A))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb56-12"><a href="#cb56-12"></a>(<span class="fu">det</span>(T))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 44</code></pre>
@@ -742,7 +741,7 @@ Figure&nbsp;4: Matrix 3.1 on a Graph.
 <span id="cb72-9"><a href="#cb72-9"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"x"</span>, </span>
 <span id="cb72-10"><a href="#cb72-10"></a>       <span class="at">y =</span> <span class="st">"y"</span>)</span>
 <span id="cb72-11"><a href="#cb72-11"></a></span>
-<span id="cb72-12"><a href="#cb72-12"></a>(<span class="fu">det</span>(A))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb72-12"><a href="#cb72-12"></a>(<span class="fu">det</span>(T))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 44</code></pre>
@@ -820,10 +819,10 @@ Figure&nbsp;5: Matrix 3.2 on a Graph.
 <span id="cb88-9"><a href="#cb88-9"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"x"</span>, </span>
 <span id="cb88-10"><a href="#cb88-10"></a>       <span class="at">y =</span> <span class="st">"y"</span>)</span>
 <span id="cb88-11"><a href="#cb88-11"></a></span>
-<span id="cb88-12"><a href="#cb88-12"></a>(<span class="fu">det</span>(A))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb88-12"><a href="#cb88-12"></a>(<span class="fu">det</span>(T))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 44</code></pre>
+<pre><code>[1] 33</code></pre>
 </div>
 <div class="cell-output-display">
 <div id="fig-matrix3.3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
