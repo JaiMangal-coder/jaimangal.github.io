@@ -103,8 +103,6 @@ library('esquisse')
 How can you ask for help about the  `esquisse` package for `R`? Report the code below, ensuring to set the `eval` option to `false`, using "\#| eval: false", so that the help document isn't loaded every time you compile your Quarto document.
 
 **Solution**
-I use the help function get some documentation on the package.
-
 ```{r}
 #| eval: false
 #| size: "scriptsize"
