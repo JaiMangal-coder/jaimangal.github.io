@@ -97,27 +97,13 @@ Describe the process -- do not leave out any steps -- for how you can load the d
 
 **Solution**
 
-I first downloaded the source data onto my desktop. Then, I exported only the necessary tables, 3B, as a csv onto my desktop. I then moved the csv into my working folder. I then used 'read.csv(...)' to load each table into R. Bang boom shakalaka done. Yes, I also said boom shakalaka during this process, and you did say not to skip out on any steps...
+I went straight into the csv, stacked the two columns and deleted the extra column names (eg. primary, thp1). This made my life easier.
 
 ```{r}
 #| size: "scriptsize"
-
-fig_3B = read.csv(file = "Fig. 3B-Table 1.csv")
-
-```
-
-**THIS WAS ALL DUMB AND STUPID AND I HATE DATA NOW**
-
-I also wanted to clean up the csv in R itself (because its good practice), but in reality I'd rather just go straight into the CSV and do all this myself. I combined the headers for the samples such that sample under primary became sample_primary and a symmetric idea for sample_thp1. 
-
-**What I ended up doing instead**
-
-I went straight into the csv, stacked the two columns and deleted the extra column names (eg. primary, thp1). This made my life easier, I'm done being fancy. 
-
-```{r}
-#| size: "scriptsize"
-
-dat = fig_3B[,c(1,2)] #just want the first two columns
+#| 
+dat = read.csv(file = "Fig. 3B-Table 1.csv")
+dat = dat[,c(1,2)] #just want the first two columns
 
 ```
 
@@ -130,8 +116,8 @@ The data need to be cleaned. Note that the sample type (Healthy Donor or THP-1),
 **Hint**: Use `?separate(...)` to see how it works.
 
 **Solution**
-
 I just used separate on my sample column, having it separate at non-alphanumeric values, such that the new columns are spit out as SampleType, CellType, and Treatment.
+
 ```{r}
 #| size: "scriptsize"
 dat.kitsberg.cleaned = dat |>
@@ -166,8 +152,7 @@ I use mutate to change the value of MDM to mac. When it isn't MDM, I just leave 
 #| size: "scriptsize"
 dat.kitsberg.cleaned = dat.kitsberg.cleaned |>
     mutate(CellType = case_when(
-                      CellType == "MDM" ~ "mac",
-                      .default = as.character(CellType)
+                      CellType == "MDM" ~ "mac"
     ))
 ```
 
@@ -192,7 +177,7 @@ Clean up the data entry. Replace the shorthand the researchers used with the nea
 
 **Solution**
 
-I used a bunch of mutate-case_when's. I kept using pipes to transfer the data over oafter each mutate was run so that it way it changes the data in the file all at the same time. Yipee!
+I used a bunch of mutate-case_when's. I kept using pipes to transfer the data over oafter each mutate was run so that it way it changes the data in the file all at the same time. 
 ```{r}
 #| size: "scriptsize"
 dat.kitsberg.cleaned = dat.kitsberg.cleaned |>
@@ -252,6 +237,9 @@ I made a violin plot using notes from class, added jitter as well. Followed clas
 
 ```{r}
 #| size: "scriptsize"
+#| fig-align: "center"
+#| fig-cap: "HCMV Genomes in Monocytes vs Macrophages"
+
 
 ggplot(dat.kitsberg.cleaned)+
   geom_violin(aes(x=CellType, y = viruses.within.nucleus), 
@@ -261,7 +249,6 @@ ggplot(dat.kitsberg.cleaned)+
                   alpha = 0.15) +
   theme_bw()+
   labs(x="Cell Type", y= "HCMV Genomes in the Nucleus")+
-  ggtitle("HCMV Genomes in Monocytes vs Macrophages")+
   facet_wrap(~SampleType)
 ```
 
@@ -290,6 +277,8 @@ dat.kitsberg.cleaned |>
   knitr::kable()
 
 ```
+
+This tells us that there were less viruses within monocyte cells, as compared to macrophage cells. 
 
 # Ship Valuation
 
@@ -353,7 +342,7 @@ dat.bal.cleaned = dat.bal.cleaned |>
       Philippines == 1 ~ "Philippines",
       Korea..South == 1 ~ "South Korea",
       Others.Country.Build == 1 ~ "Other",
-      .default = NA_character_ #had to look this up for the default else case...
+      .default = NA_character_ 
     )
   )
 
@@ -582,13 +571,14 @@ For the numerical summary, I decided to include all statistics we have learned a
 
 ```{r}
 #| size: "scriptsize"
+#| fig-cap: "Ship Prices by Country of Origin"
+
 
 ggplot(dat.bal.cleaned |> drop_na(OriginCountry))+
   geom_boxplot(aes(x=OriginCountry, y = price), 
                   fill="lightgrey")+
   theme_bw()+
-  labs(x="Country of Origin", y="Ship Price (in Millions of US Dollars)")+
-  ggtitle("Ship Prices by Country of Origin")
+  labs(x="Country of Origin", y="Ship Price (in Millions of US Dollars)")
 ```
 
 ```{r}
@@ -608,7 +598,7 @@ dat.bal.cleaned |>
     "Excess Kurtosis" = e1071::kurtosis(price),
     Skew = e1071::skewness(price)
   ) |>
-  knitr::kable()
+  knitr::kable(digits = 2)
 ```
 
 
@@ -622,14 +612,15 @@ Here, I am going to use Yas as my quantitative variable to show how age affects 
 For the numerical summary, i created age groups so i could group by them, so the summary is more relevant for what age the ships arre around. 
 ```{r}
 #| size: "scriptsize"
+#| fig-cap: "Ship Price vs Ship Age"
+
 
 ggplot(dat.bal.cleaned, aes(x = Yas, y = price)) +
   geom_point(color = "black") +
   
   theme_bw() +
   labs(x = "Ship Age (Years)",
-       y = "Ship Price (in Millions of US Dollars)") +
-  ggtitle("Ship Price vs Ship Age")
+       y = "Ship Price (in Millions of US Dollars)")
 ```
 
 ```{r}
@@ -658,3 +649,5 @@ dat.bal.cleaned |>
   ) |>
   knitr::kable()
 ```
+
+Here, we obviously see an inverse relationship between ship age and age. As ships get older, their price gradually decreases. There are a few outliers, but this can most likely be attributed to specific ship features and/or specialties which boost prices. 
