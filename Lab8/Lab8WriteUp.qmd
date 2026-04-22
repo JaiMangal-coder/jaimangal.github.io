@@ -111,6 +111,8 @@ Thus, I can use the CDF function (pbinom) to easily calculate this probability. 
 
 ```{r}
 #| size: "scriptsize"
+#| fig-align: center
+
 
 win_percent = 1 - pbinom(q=1, prob = 0.7, size = 3)
 (win_percent)
@@ -162,6 +164,8 @@ I get the same result as I did for the binomial distribution.
 
 ```{r}
 #| size: "scriptsize"
+#| fig-align: center
+
 
 win_percent = pnbinom(q=1, prob=0.7, size = 2)
 (win_percent)
@@ -286,8 +290,6 @@ I use a standard probability statement to find I just need to use the CDF functi
 
 ```{r}
 #| fig-cap: "At least 50% win probability"
-#| fig-width: 8
-#| fig-height: 6
 #| scale: "80%"
 #| fig-align: "center"
 #| label: atleast50
@@ -303,18 +305,18 @@ ggdat = tibble(x = seq(0, 1, length.out = 1000)) |>
   )
 
 PDF.plot = ggplot() +
-  geom_linerange(data=ggdat,aes(x = x, ymin = 0, ymax = PDF), 
+  geom_line(data=ggdat,aes(x = x, y = PDF), 
                   alpha = 0.3) +
-  geom_linerange(data=ggdat |> filter(x >=0.5),
+  geom_ribbon(data=ggdat |> filter(x >=0.5),
                 aes(x = x, ymin = 0, ymax = PDF),
-                color = "darkorchid2", linewidth=1, alpha=0.15) +
+                fill = "darkorchid2", alpha=0.5) +
   geom_hline(yintercept = 0) +
   scale_x_continuous("x", breaks=seq(0,1,by=0.2)) +
   ylab("Density") +
   theme_bw()
 
 CDF.plot = ggplot() +
-  geom_step(data = ggdat, aes(x = x, y = CDF)) +
+  geom_line(data = ggdat, aes(x = x, y = CDF)) +
   geom_point(data = ggdat |> filter(x==1), 
             aes(x = 0.5, y = pbeta(q=0.5,7,3)),
             color="darkorchid2", size = 2.5, alpha =0.5) +
@@ -355,18 +357,18 @@ ggdat = tibble(x = seq(0, 1, length.out = 1000)) |>
   )
 
 PDF.plot = ggplot() +
-  geom_linerange(data = ggdat,
-                 aes(x = x, ymin = 0, ymax = PDF)) +
-  geom_linerange(data = ggdat |> filter(x <= q_90),
+  geom_line(data = ggdat,
+                 aes(x = x, y = PDF)) +
+  geom_ribbon(data = ggdat |> filter(x <= q_90),
                  aes(x = x, ymin = 0, ymax = PDF),
-                 color = "darkorchid2", linewidth = 1, alpha = 0.15) +
+                 fill = "darkorchid2", alpha = 0.5) +
   geom_hline(yintercept = 0) +
   scale_x_continuous("x", breaks = seq(0, 1, by = 0.2)) +
   ylab("Density") +
   theme_bw()
 
 CDF.plot = ggplot() +
-  geom_step(data = ggdat, aes(x = x, y = CDF)) +
+  geom_line(data = ggdat, aes(x = x, y = CDF)) +
   geom_point(aes(x = q_90, y = 0.90),
              color = "darkorchid2", size = 2.5, alpha = 0.5) +
   geom_hline(yintercept = 0) +
@@ -545,9 +547,10 @@ PMF.plot = ggplot() +
                  aes(x = x, ymin = 0, ymax = PMF, color = factor(theta))) +
   geom_hline(yintercept = 0) +
   scale_x_continuous("x", breaks = 0:3) +
+  scale_color_discrete(name = expression(theta)) + 
   ylab("Probability") +
   theme_bw()+
-  facet_wrap(~factor(theta))
+  facet_wrap(~theta, labeller = label_bquote(theta == .(theta)))
 
 PMF.plot
 ```
@@ -562,7 +565,7 @@ Based on the PMF plot, we see that as we vary theta lower, we get a more 'hot-ha
 Since the CDF is just the probability that X is less than or equal to some value, I can compute it by summing the PMF from 0 up to x. 
 ```{r}
 #| fig-align: "center"
-#| fig-cap: "CDF for theta = 0.5, 1, 1.5 and p = 0.7"
+#| fig-cap: "CDF for $\\theta$ = 0.5, 1, 1.5 and p = 0.7"
 #| size: "scriptsize"
 
 
@@ -599,7 +602,7 @@ CDF.plot = ggplot() +
 CDF.plot
 ```
 
-Based on the CDF plot we see that changing our theta values affects where the cumulative probability clumps up. At lower theta values, probability clumps reflecting the hot-hand effect. Once again, at theta = 1, we get a normal binomial distribution. At greater theta values, the clumpy effect is reduced, with more probability at middle values, thus more likely heading to 2-1 outcomes. 
+Based on the CDF plot we see that changing our theta values affects where the cumulative probability clumps up. At lower $\theta$ values, probability clumps reflecting the hot-hand effect. Once again, at $\theta$ = 1, we get a normal binomial distribution. At greater theta values, the clumpy effect is reduced, with more probability at middle values, thus more likely heading to 2-1 outcomes. 
 
 ## The Winning Probability
 **Compute the probability that Player A wins the match using Altham's Multiplicative Binomial Distribution. Compare your result to the Binomial and Negative Binomial results. Compare your results to the Beta-Binomial model, too. Make sure write out your probability statement and work to write it in terms of the distribution function (PMF/CDF) to plot the probability using `ggplot`.**
@@ -614,7 +617,8 @@ $$P(X\geq2) = 1 - P(X\leq1) = 1- F_X(1)$$.
 ```{r}
 #| size: "scriptsize"
 #| fig-align: "center"
-#| fig-cap: Altham's Multiplicative Binomial Distribution with theta = 0.5, 1,r 1.5 and p = 0.7
+#| fig-cap: Altham's Multiplicative Binomial Distribution with $\theta$ = 0.5, 1, 1.5 and p = 0.7
+#| fig-height: 5
 
 
 #each theta case here
@@ -667,7 +671,7 @@ CDF.plot = ggplot() +
   theme_bw() +
   facet_wrap(~factor(theta))
 
-PMF.plot | CDF.plot
+PMF.plot / CDF.plot
 
 ```
 
@@ -697,11 +701,10 @@ $$f_X(x) = \left[\int_{0}^1 dp
 daltbbinom = function(x, alpha, beta, theta, n){
   #I had an issue because integrate() passes in multiple values of p at once,
   #so I used a second sapply() to evaluate one p-value at a time
-  # hence the double sapply, i wont lie i had to consult oscar for this bc i didnt understand why my PMF was not adding up to 1 before. 
 
   sapply(x, function(z){ #apply from 0 to z in x
     f_x = function(p){
-      sapply(p, function(m){ #apply from 0 to m in p (ik my naming convention sucks, i had to try a bunch of things for this to work out)
+      sapply(p, function(m){ #apply from 0 to m in p 
         daltbinom(x = z, p = m, theta = theta, n = n) * dbeta(m, alpha, beta)
       })
     }
@@ -859,6 +862,6 @@ ggplot(ggdat, aes(x = outcome, y = prob, fill = outcome)) +
   theme_bw()
 ```
 
-The binomial model assumes a fixed leg-win probability of 0.7. So we see a higher trend to 2 and 3 wins. In fact, in all the models it is most probable that Player A's record is 2-0 in the game. The negative binomial shows the same idea. The beta-binomial is similar but allows the leg-win probability to vary very slightly to adjust for more realistic variations. The Altham Binomial models show how dependencies between legs affect overall outcome. With lower thetas, wins stack and clump together, creating more 2-0 or 0-2 chances, while the opposite is true for higher thetas, creating more 2-1 or 1-2 chances. Combining the Altham with the Beta Binomial we get the combination of leg dependency and variations in leg-win probability. Overall, each model does better with different scenarios. The Altham Beta-Binomial model does well to show hot-hand behavior with varying performance through a match. But, depending on environment and set up, each model will better illustrate those varying systems. 
+The binomial model assumes a fixed leg-win probability of 0.7. So we see a higher trend to 2 and 3 wins. In fact, in all the models it is most probable that Player A's record is 2-0 in the game. The negative binomial shows the same idea. The beta-binomial is similar but allows the leg-win probability to vary very slightly to adjust for more realistic variations. The Altham Binomial models show how clumping affects the overall outcome. With lower thetas, wins stack and clump together, creating more 2-0 or 0-2 chances, while the opposite is true for higher thetas, creating more 2-1 or 1-2 chances. Combining the Altham with the Beta Binomial we get the combination of leg dependency and variations in leg-win probability. Overall, each model does better with different scenarios. The Altham Beta-Binomial model does well to show hot-hand behavior with varying performance through a match. But, depending on environment and set up, each model will better illustrate those varying systems. 
 
 
