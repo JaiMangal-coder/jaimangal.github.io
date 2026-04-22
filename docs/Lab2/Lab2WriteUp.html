@@ -300,12 +300,13 @@ window.Quarto = {
 <section id="part-a" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="part-a"><span class="header-section-number">1.1</span> Part a</h2>
 <p>Install the <code>esquisse</code> package for <code>R</code>. Report the code below, ensuring to set the <code>eval</code> option to <code>false</code>, using “#| eval: false”, so that we don’t install the package every time you compile your Quarto document.</p>
-<p><strong>Solution</strong> Here, I just installed the package.</p>
+<p><strong>Solution</strong></p>
 <p></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">'esquisse'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">'esquisse'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">install.packages</span>(<span class="st">'plotly'</span>) <span class="co">#needed to resolve error</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p></p>
@@ -313,12 +314,12 @@ window.Quarto = {
 <section id="part-b" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="part-b"><span class="header-section-number">1.2</span> Part b</h2>
 <p>Load the <code>esquisse</code> package for <code>R</code>. Report the code below. It does not matter whether you set “#| eval: false” because loading the package does not add a lot of time. Note you will not evaluate any code that uses the <code>esquisse</code> package, so there is no need to load it as you compile your Quarto document.</p>
-<p><strong>Solution</strong> Here, I loaded the now installed package.</p>
+<p><strong>Solution</strong></p>
 <p></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(<span class="st">'esquisse'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(esquisse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p></p>
@@ -326,12 +327,12 @@ window.Quarto = {
 <section id="part-c" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="part-c"><span class="header-section-number">1.3</span> Part c</h2>
 <p>How can you ask for help about the <code>esquisse</code> package for <code>R</code>? Report the code below, ensuring to set the <code>eval</code> option to <code>false</code>, using “#| eval: false”, so that the help document isn’t loaded every time you compile your Quarto document.</p>
-<p><strong>Solution</strong> I use the help function get some documentation on the package.</p>
+<p><strong>Solution</strong></p>
 <p></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">help</span>(esquisser)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">help</span>(esquisse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p></p>
@@ -339,7 +340,7 @@ window.Quarto = {
 <section id="part-d" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="part-d"><span class="header-section-number">1.4</span> Part d</h2>
 <p>Is a demo or vignette available for the <code>esquisse</code> package for <code>R</code>? Report the code below, ensuring to set the <code>eval</code> option to <code>false</code>, using “#| eval: false”, so that the you don’t get errors when you compile your Quarto document.</p>
-<p><strong>Solution</strong> A vignette is available using a specified vignette and package.</p>
+<p><strong>Solution</strong></p>
 <p></p>
 <div class="cell">
 <details class="code-fold">
@@ -353,6 +354,8 @@ window.Quarto = {
 <h2 data-number="1.5" class="anchored" data-anchor-id="part-e"><span class="header-section-number">1.5</span> Part e</h2>
 <p>Add the BibTeX citation for <code>esquisse</code> package for <code>R</code> to your <code>.bib</code> file and cite it in a sentence describing what the package does below. Note you can reference a citation named <code>esquisse</code> using “[@esquisse]”. <!-- Note the \hspace{-0em} above is for printing 
 the command instead of actually citing. --></p>
+<p><strong>Solution</strong></p>
+<p>The package <code>esquisse</code> <span class="citation" data-cites="esquisse">(<a href="#ref-esquisse" role="doc-biblioref">Meyer and Perrier 2025</a>)</span> makes it easier to create ggplot2 visualizations by making it more interactive using a drag-and-drop GUI, and then we can export the <code>R</code> code to actually use.</p>
 </section>
 <section id="part-f" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="part-f"><span class="header-section-number">1.6</span> Part f</h2>
@@ -362,11 +365,13 @@ the command instead of actually citing. --></p>
 <li>Drag <code>body_mass_g</code> to the X box and <code>species</code> to the fill box.</li>
 <li>Describe what you see in words. What can you conclude about Adelie, Chinstrap, and Gentoo penguins based on the resulting plot?</li>
 </ol>
+<p><strong>Solution</strong></p>
+<p>I see a histogram of body mass of various species of penguins (Adelie, Chinstrap, and Gentoo) versus the count of each of these penguins with their weights. I see that on average, the Gentoo penguins are the heaviest, trailed by the Chinstrap and Adelie. The visualization does not show clearly if the Chinstrap or Adelie are heavier, but it shows that there are more counts of Adelie penguins in specific weights than either the Chinstrap or Gentoo. Thus, there may have been more measurements taken on the Adelie penguins than the other species.</p>
 </section>
 </section>
 <section id="objects-and-vectors" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Objects and Vectors</h1>
-<p>Create the following vectors in <code>R</code>. In some cases, you may be able to use <code>seq()</code> or <code>rep()</code> while in others you cannot. Use these functions when possible, otherwise manually create the vector and explain why that was necessary.</p>
+<p>Create the following vectors in <code>R</code>. In some cases, you may be able to use <code>seq()</code> or <code>rep()</code>, while in others you cannot. Use these functions when possible, otherwise manually create the vector and explain why that was necessary.</p>
 <p><strong>Some Snowday Notes</strong></p>
 <p>There are three ways we will create a vector. Most simply, we can create one from scratch. For example, I create a vector of odds, and evens less than 10 below.</p>
 <p></p>
@@ -429,11 +434,32 @@ the command instead of actually citing. --></p>
 <h2 data-number="2.1" class="anchored" data-anchor-id="part-a-1"><span class="header-section-number">2.1</span> Part a</h2>
 <p>The Fibonacci Sequence is a recursive formula: <span class="math display">\[F_n = F_{n-1} + F_{n-2}\]</span> where <span class="math inline">\(F_0=0\)</span> and <span class="math inline">\(F_1=1\)</span>.</p>
 <p>Create a vector of the first 10 Fibonacci numbers.</p>
+<p><strong>Solution</strong></p>
+<p>Here I was unable to use either seq() or rep() because the Fibonacci Sequence does not rely on incrementing on a set amount, nor does it involve any repitition of numbers.</p>
+<p></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>(<span class="at">fib_numbers =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">13</span>,<span class="dv">21</span>,<span class="dv">34</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  0  1  1  2  3  5  8 13 21 34</code></pre>
+</div>
+</div>
+<p></p>
 </section>
 <section id="part-b-1" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="part-b-1"><span class="header-section-number">2.2</span> Part b</h2>
 <p>Triangular Numbers are the cumulative sums of natural numbers: <span class="math display">\[F_n = \frac{n(n+1)}{2}.\]</span></p>
 <p>Create a vector of the first 10 Triangular Numbers.</p>
+<p><strong>Solution</strong></p>
+<p>Here, I can use seq() to create a vector of nums from 1-10, and then I can make another vector that transforms each of those numbers into the triangular numbers using the given formula.</p>
+<p></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>nums <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>)</span>
+<span id="cb24-2"><a href="#cb24-2"></a>(<span class="at">triangular_nums =</span> (nums<span class="sc">*</span>(nums<span class="sc">+</span><span class="dv">1</span>))<span class="sc">/</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  3  6 10 15 21 28 36 45 55</code></pre>
+</div>
+</div>
+<p></p>
 </section>
 <section id="part-c-1" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="part-c-1"><span class="header-section-number">2.3</span> Part c</h2>
@@ -443,10 +469,51 @@ the command instead of actually citing. --></p>
 <li>Create a vector containing each <code>ID</code> repeated three times, once for each treatment.</li>
 <li>Create a vector containing each <code>Treatment</code> repeated for each participant ID.</li>
 </ol>
+<p><strong>Solution</strong></p>
+<p></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>(<span class="at">ID =</span> <span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>),<span class="at">each=</span><span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  1  1  2  2  2  3  3  3  4  4  4  5  5  5  6  6  6  7  7  7  8  8  8  9
+[26]  9  9 10 10 10</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>(<span class="at">Treatment =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Control"</span>,<span class="st">"Treatment A"</span>,<span class="st">"Treatment B"</span>), <span class="at">times=</span><span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Control"     "Treatment A" "Treatment B" "Control"     "Treatment A"
+ [6] "Treatment B" "Control"     "Treatment A" "Treatment B" "Control"    
+[11] "Treatment A" "Treatment B" "Control"     "Treatment A" "Treatment B"
+[16] "Control"     "Treatment A" "Treatment B" "Control"     "Treatment A"
+[21] "Treatment B" "Control"     "Treatment A" "Treatment B" "Control"    
+[26] "Treatment A" "Treatment B" "Control"     "Treatment A" "Treatment B"</code></pre>
+</div>
+</div>
+<p></p>
 </section>
 <section id="part-d-1" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="part-d-1"><span class="header-section-number">2.4</span> Part d</h2>
 <p>Create a vector containing the <code>character</code> “MATH” and the <code>numeric</code> 240. What is the resulting class? Explain why in a sentence.</p>
+<p><strong>Solution</strong></p>
+<p></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>(<span class="at">weird_var =</span> <span class="fu">c</span>(<span class="st">"MATH"</span>, <span class="dv">240</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "MATH" "240" </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>(<span class="fu">class</span>(weird_var))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+<p></p>
+<p>The resulting class is of “character” now because vectors can only contain or be of one type only, so the numeric 240 is converted into a character “240”, as character types are relatively more “flexible”.</p>
+<p></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(<span class="st">"Lab2WriteUp.qmd"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p></p>
 
 
 
@@ -456,6 +523,9 @@ the command instead of actually citing. --></p>
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-primes" class="csl-entry" role="listitem">
 Keyes, Os, and Paul Egeler. 2025. <em>Primes: Fast Functions for Prime Numbers</em>. <a href="https://doi.org/10.32614/CRAN.package.primes">https://doi.org/10.32614/CRAN.package.primes</a>.
+</div>
+<div id="ref-esquisse" class="csl-entry" role="listitem">
+Meyer, Fanny, and Victor Perrier. 2025. <em>Esquisse: Explore and Visualize Your Data Interactively</em>. <a href="https://doi.org/10.32614/CRAN.package.esquisse">https://doi.org/10.32614/CRAN.package.esquisse</a>.
 </div>
 <div id="ref-R" class="csl-entry" role="listitem">
 R Core Team. 2025. <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.

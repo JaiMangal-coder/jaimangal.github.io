@@ -68,6 +68,8 @@ knitr::knit_hooks$set(chunk = function(x, options) {
 #| label: load-packages
 #| include: false
 # Load Libraries here
+library(esquisse)
+library(plotly)
 ```
 
 * Use `R` [@R] to complete the tasks below. Make sure to start your solutions in on a new line that starts with "**Solution**:".
@@ -85,6 +87,7 @@ Here, I just installed the package.
 #| eval: false
 #| size: "scriptsize"
 install.packages('esquisse')
+install.packages('plotly') #needed to resolve error
 ```
 
 ## Part b
@@ -96,17 +99,19 @@ Here, I loaded the now installed package.
 ```{r}
 #| eval: false
 #| size: "scriptsize"
-library('esquisse')
+library(esquisse)
 ```
 
 ## Part c
 How can you ask for help about the  `esquisse` package for `R`? Report the code below, ensuring to set the `eval` option to `false`, using "\#| eval: false", so that the help document isn't loaded every time you compile your Quarto document.
 
 **Solution**
+I use the help function to get documentation about the package.
+
 ```{r}
 #| eval: false
 #| size: "scriptsize"
-help(esquisser)
+help(esquisse)
 ```
 
 ## Part d
@@ -117,8 +122,7 @@ A vignette is available using a specified vignette and package.
 
 ```{r}
 #| eval: false
-
-
+#| size: "scriptsize"
 vignette("get-started", package = "esquisse")
 ```
 
@@ -127,6 +131,9 @@ Add the BibTeX citation for `esquisse` package for `R` to your `.bib` file and c
 <!-- Note the \hspace{-0em} above is for printing 
 the command instead of actually citing. -->
 
+**Solution**
+
+The package `esquisse` [@esquisse] makes it easier to create ggplot2 visualizations by making it more interactive using a drag-and-drop GUI, and then we can export the `R` code to actually use. 
 
 ## Part f
 Run `esquisser()` in your console -- not in a chunk of `R` code in your Quarto document. 
@@ -135,8 +142,12 @@ i. Select `palmerpenguins` from the "Select an environment in which to search:" 
 ii. Drag `body_mass_g` to the X box and `species` to the fill box. 
 iii. Describe what you see in words. What can you conclude about Adelie, Chinstrap, and Gentoo penguins based on the resulting plot? 
 
+**Solution**
+
+I see a histogram of body mass of various species of penguins (Adelie, Chinstrap, and Gentoo) versus the count of each of these penguins with their weights. I see that on average, the Gentoo penguins are the heaviest, trailed by the Chinstrap and Adelie. The visualization does not show clearly if the Chinstrap or Adelie are heavier, but it shows that there are more counts of Adelie penguins in specific weights than either the Chinstrap or Gentoo. Thus, there may have been more measurements taken on the Adelie penguins than the other species.
+
 # Objects and Vectors
-Create the following vectors in `R`. In some cases, you may be able to use `seq()` or `rep()` while in others you cannot. Use these functions when possible, otherwise manually create the vector and explain why that was necessary.
+Create the following vectors in `R`. In some cases, you may be able to use `seq()` or `rep()`, while in others you cannot. Use these functions when possible, otherwise manually create the vector and explain why that was necessary.
 
 **Some Snowday Notes**
 
@@ -189,11 +200,33 @@ where $F_0=0$ and $F_1=1$.
 
 Create a vector of the first 10 Fibonacci numbers.
 
+**Solution**
+
+Here I was unable to use either seq() or rep() because the Fibonacci Sequence does not rely on incrementing on a set amount, nor does it involve any repitition of numbers. 
+```{r}
+#| size: "scriptsize"
+#| code-fold: FALSE
+(fib_numbers = c(0,1,1,2,3,5,8,13,21,34))
+```
+
+
 ## Part b
 Triangular Numbers are the cumulative sums of natural numbers:
 $$F_n = \frac{n(n+1)}{2}.$$
 
 Create a vector of the first 10 Triangular Numbers. 
+
+**Solution**
+
+Here, I can use seq() to create a vector of nums from 1-10, and then I can make another vector that transforms each of those numbers into the triangular numbers using the given formula. 
+```{r}
+#| size: "scriptsize"
+#| code-fold: FALSE
+
+nums = seq(1,10)
+(triangular_nums = (nums*(nums+1))/2)
+```
+
 
 ## Part c
 Suppose I were designing a repeated meausres experiment with three treatment conditions. Each of $n=10$ participants (with `ID` 1 to 10) will receive *all* experimental conditions, call them "Control", "Treatment A", and "Treatment B". 
@@ -203,5 +236,31 @@ Consider setting up data entry for this experiment.
 i. Create a vector containing each `ID` repeated three times, once for each treatment.
 ii. Create a vector containing each `Treatment` repeated for each participant ID.
 
+**Solution**
+```{r}
+#| size: "scriptsize"
+#| code-fold: FALSE
+
+(ID = rep(seq(1,10),each=3))
+(Treatment = rep(c("Control","Treatment A","Treatment B"), times=10))
+```
+
+
 ## Part d
 Create a vector containing the `character` "MATH" and the `numeric` 240. What is the resulting class? Explain why in a sentence.
+
+**Solution**
+```{r}
+#| size: "scriptsize"
+#| code-fold: FALSE
+
+(weird_var = c("MATH", 240))
+(class(weird_var))
+```
+
+The resulting class is of "character" now because vectors can only contain or be of one type only, so the numeric 240 is converted into a character "240", as character types are relatively more "flexible".
+
+```{r}
+#| eval: false
+quarto::quarto_render("Lab2WriteUp.qmd")
+```
