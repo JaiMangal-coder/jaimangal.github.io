@@ -123,4 +123,152 @@ Using this dataset, I will:
 
 This will demonstrate both tidyverse data wrangling and ggplot proficiency. 
 
+## Loading and inspecting the data
+
+First, I want to load and read the data, so I can understand its format. 
+
+### Load packages and data
+
+```{r}
+library(tidyverse)
+
+data = read_csv('snooker_players_dataset.csv')
+view(data)
+head(data)
+
+```
+
+In this case, the data contains info on the player names, country of origins, rankings, match results, scoring statistics, and prize money earned. We have a nice mix of both categorical and quantitative variables, so we can practice our ggplot skills well here. 
+
+### Select important data
+
+```{r}
+data |>
+  select(Player_Name, Country, Age, World_Ranking, Matches_Won, Century_Breaks, Prize_Money_USD)
+
+```
+
+This is a simple example of select(). It allows me to focus on the variables I want to analyze instead of always working with the full dataset.
+
+### Create new variables
+
+One of the most useful tools, `mutate()`, allows me to create new columns or variables from our dataset. For example, we will make two new variables, "win_percentage" and "prize_money_millions" so that we can get eahc player's win percentage and their total prize money in the millions unit.
+
+```{r}
+data <- data |>
+  mutate(
+    Win_Percentage = Matches_Won / Matches_Played,
+    Prize_Money_Millions = Prize_Money_USD / 1000000
+  )
+
+data |>
+  select(Player_Name, Win_Percentage, Prize_Money_Millions)
+```
+
+### Numerical Summaries
+
+Now let's use numerical summaries to better describe the distributions of our variables. 
+
+```{r}
+data |>
+  summarize(
+    mean_age = mean(Age),
+    median_age = median(Age),
+    mean_wins = mean(Matches_Won),
+    median_wins = median(Matches_Won),
+    mean_centuries = mean(Century_Breaks),
+    median_centuries = median(Century_Breaks),
+    mean_prize_money_millions = mean(Prize_Money_Millions),
+    median_prize_money_millions = median(Prize_Money_Millions)
+  ) |>
+    pivot_longer( #fancy stuff here to display, dont worry about it
+    cols = everything(),
+    names_to = "Statistic",
+    values_to = "Value"
+  ) |>
+  knitr::kable(digits = 2)
+```
+
+Now, we get a better look of the mean and medians of each variable of all the players. 
+
+### Grouped Summary by Country
+
+```{r}
+country_summary <- data |>
+  group_by(Country) |>
+  summarize(
+    players = n(),
+    mean_age = mean(Age),
+    mean_wins = mean(Matches_Won),
+    mean_centuries = mean(Century_Breaks),
+    mean_prize_money_millions = mean(Prize_Money_Millions)
+  )
+country_summary
+```
+
+This summary shows how we can use `group_by()` and `summarize()` to work together to describe stats by categories. Because this is a small data set, most countries only have 1 player, but this still represents a good example of a grouped summary. 
+
+### Plot 1: Century breaks by player
+
+Since `Player_Name` is categorical and `Century_Breaks` is quantitative, a bar chart is a good choice. 
+
+```{r}
+#| fig-cap: "Century breaks by player"
+ggplot(data, aes(x = Player_Name, y = Century_Breaks)) +
+  geom_col() +
+  xlab("Player") +
+  ylab("Century Breaks") +
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+This graph makes it easy to compare players directly. A bar chart works well here because our goal is to compare one quantitative value against multiple categories (names).
+
+### Plot 2: Matches won and prize money
+
+For two quantitative variables, our best option is a scatterplot. 
+
+```{r}
+#| fig-cap: Matches won and prize money earned
+ggplot(data, aes(x = Matches_Won, y = Prize_Money_Millions)) +
+  geom_point(size = 3) +
+  xlab("Matches won")+
+  ylab("Prize money (millions of USD)")+
+  theme_bw()
+```
+
+This scatterplot helps show that players with more wins also tend to earn more prize money. In general, it makes sense that winning more creates more opportunities to earn more. 
+
+### Plot 3: Boxplot of century breaks by country
+
+Because century breaks is quntitative and country is qualitative, a boxplot is a good idea here. 
+
+```{r}
+#| fig-cap: "Century breaks by country"
+ggplot(data, aes(x = Country, y = Century_Breaks)) +
+  geom_boxplot() +
+  xlab("Country")+
+  ylab("Century Breaks")+
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+This boxplot compares the distribution of century breaks across countries. Boxplots are useful because they show the center, spread, and outliers of a quantitative variable within each category. The number of players per country is small, but it still demonstrates how boxplots can be used to compare groups.
+
+### Take aways from our analysis
+
+We used a lot of key concepts from topic 2 here. 
+
+First, tidyverse functions make analysis more readable and organized. I was able to move from importing the data, to selecting variables, to creating new variables, to grouped summaries in a clear process, that is easilly followed.
+
+Second, the type of variable matters when choosing a graph. I used bar charts when comparing a quantitative measurement across players, and scatterplots when comparing two quantitative variables.
+
+Third, `mutate()` is especially useful because it lets me create variables that are more meaningful than the originals. In this dataset, win percentage was more informative than raw wins alone, and prize money in millions was easier to interpret than large dollar amounts.
+
+Finally, the visualizations help communicate patterns more clearly than a table alone. For example, it is easier to compare century breaks or win percentages across players in a graph than by scanning rows of numbers.
+
+## Conclusions
+
+Overall, this snooker dataset was a good example to test out some topics and skills from unit 2. It allowed me to combine data wrangling and data visualization in one work flow. Thank you for reading. 
+
 
