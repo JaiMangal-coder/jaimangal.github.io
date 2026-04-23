@@ -35,4 +35,92 @@ format-links: [pdf]
 
 ## Introduction
 
-Unit 2 focused on two tools for data analysis in R: the **tidyverse** and **ggplot2**. The tidyverse provides an easy and clean way to import, transform, and summarize data. ggplot2 provides a flexible system for building graphs that clearly 
+Unit 2 focused on two tools for data analysis in R: the **tidyverse** and **ggplot2**. The tidyverse provides an easy and clean way to import, transform, and summarize data. ggplot2 provides a flexible way to build graphs that clearly communicate and summarize data. 
+
+In this review, I will summarize the main ideas from Unit 2 and then apply them on a real dataset of professional snooker players. My goal is to create a nice guide on how and when to use the tidyverse and ggplot tools. 
+
+## What is the tidyverse?
+
+The tidyverse is a collection of packages made to make data science a tad easier. In class, we used tidyverse tools to read in .csv files, manipulate data, create new variables, filter observations, and compute summary statistics.
+
+One major benefit of the tidyverse is its readability. Using the pipe operator, we can easily pass data in through steps, which makes the logic of both reading and writing the code much easier to follow. This is especially useful when cleaning data. 
+
+## Types of variables
+
+Another important part of Unit 2 is recognizing the different kinds of variables, because the type of variable affects both the summaries and the plots that make sense to use.
+
+A **categorical variable** is simple and places qualitative observations into groups or categories. 
+
+A **quantitative variable** records quantitative values. These could be either:
+
+- **continuous**, measured data
+- **discrete**, counted data
+
+Understanding what kind of data you have is important in figuring out what kind of numerical summaries or visualizations you should provide. 
+
+## Most important tools we used in tidyverse
+
+- `tibble()`, to create an enhanced data frame
+- `read_csv()`, to import data
+- `filter()`, to keep rows based on conditions
+- `mutate()`, to create or modify columns
+- `group_by()`, to specify a group
+- `summarize()`, to compute summaries
+- `select()`, to select one or more columns as a data frame
+- `case_when()`, to compute multiple if_else() statements
+
+
+These tools make it easier to move from raw data to summaries in a very understandable process.
+
+## Numerical summaries
+
+We also learned how to describe data numerically. Depending on the type of variable and the shape of the distribution, different summaries are better.
+
+Some of the main summaries we used were:
+
+- mean 
+- standard deviation
+- median
+- interquartile ranges
+- counts
+- proportions
+- grouped summaries for comparing categories
+
+For example, if a variable is skewed, the median and IQR may describe the center and spread better than the mean and standard deviation. If the variable is categorical, proportions are more useful than using an average.
+
+## Introduction to ggplot2
+
+`ggplot2` is a plotting system that drastically makes it easier to plot and graph. ggplot builds a plot by combining lines, making it easier to modularly create your graph. This usually includes:
+
+- the dataset
+- aesthetic decisions in `aes()`
+- specified type of plot such as bars, points, or boxes
+- axis labels
+- a theme
+
+This approach makes plots easier to customize and helps explain what each part of a graph is doing.
+
+We also learned that plot choice depends on the type of variables involved. For example:
+
+- one categorical variable -> bar plot
+- one quantitative variable -> histogram
+- one categorical and one quantitative variable -> boxplot or violin plot
+- two quantitative variables -> scatterplot
+
+This framework is useful because it gives a logical reason for choosing one graph over another, rather than just picking a graph that looks nice.
+
+## Time to apply these skills
+
+To review this unit, I will use a dataset on professional snooker players. This dataset includes both categorical and quantitative variables, which makes it a good fit. 
+
+Using this dataset, I will:
+
+- inspect the structure of the data
+- create new variables with `mutate()`
+- compute summary statistics
+- build visualizations
+- interpret what the summaries and graphs show
+
+This will demonstrate both tidyverse data wrangling and ggplot proficiency. 
+
+
