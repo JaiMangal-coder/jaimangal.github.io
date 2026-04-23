@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -178,6 +213,19 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#numerical-summaries" id="toc-numerical-summaries" class="nav-link" data-scroll-target="#numerical-summaries"><span class="header-section-number">5</span> Numerical summaries</a></li>
   <li><a href="#introduction-to-ggplot2" id="toc-introduction-to-ggplot2" class="nav-link" data-scroll-target="#introduction-to-ggplot2"><span class="header-section-number">6</span> Introduction to ggplot2</a></li>
   <li><a href="#time-to-apply-these-skills" id="toc-time-to-apply-these-skills" class="nav-link" data-scroll-target="#time-to-apply-these-skills"><span class="header-section-number">7</span> Time to apply these skills</a></li>
+  <li><a href="#loading-and-inspecting-the-data" id="toc-loading-and-inspecting-the-data" class="nav-link" data-scroll-target="#loading-and-inspecting-the-data"><span class="header-section-number">8</span> Loading and inspecting the data</a>
+  <ul class="collapse">
+  <li><a href="#load-packages-and-data" id="toc-load-packages-and-data" class="nav-link" data-scroll-target="#load-packages-and-data"><span class="header-section-number">8.1</span> Load packages and data</a></li>
+  <li><a href="#select-important-data" id="toc-select-important-data" class="nav-link" data-scroll-target="#select-important-data"><span class="header-section-number">8.2</span> Select important data</a></li>
+  <li><a href="#create-new-variables" id="toc-create-new-variables" class="nav-link" data-scroll-target="#create-new-variables"><span class="header-section-number">8.3</span> Create new variables</a></li>
+  <li><a href="#numerical-summaries-1" id="toc-numerical-summaries-1" class="nav-link" data-scroll-target="#numerical-summaries-1"><span class="header-section-number">8.4</span> Numerical Summaries</a></li>
+  <li><a href="#grouped-summary-by-country" id="toc-grouped-summary-by-country" class="nav-link" data-scroll-target="#grouped-summary-by-country"><span class="header-section-number">8.5</span> Grouped Summary by Country</a></li>
+  <li><a href="#plot-1-century-breaks-by-player" id="toc-plot-1-century-breaks-by-player" class="nav-link" data-scroll-target="#plot-1-century-breaks-by-player"><span class="header-section-number">8.6</span> Plot 1: Century breaks by player</a></li>
+  <li><a href="#plot-2-matches-won-and-prize-money" id="toc-plot-2-matches-won-and-prize-money" class="nav-link" data-scroll-target="#plot-2-matches-won-and-prize-money"><span class="header-section-number">8.7</span> Plot 2: Matches won and prize money</a></li>
+  <li><a href="#plot-3-boxplot-of-century-breaks-by-country" id="toc-plot-3-boxplot-of-century-breaks-by-country" class="nav-link" data-scroll-target="#plot-3-boxplot-of-century-breaks-by-country"><span class="header-section-number">8.8</span> Plot 3: Boxplot of century breaks by country</a></li>
+  <li><a href="#take-aways-from-our-analysis" id="toc-take-aways-from-our-analysis" class="nav-link" data-scroll-target="#take-aways-from-our-analysis"><span class="header-section-number">8.9</span> Take aways from our analysis</a></li>
+  </ul></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions"><span class="header-section-number">9</span> Conclusions</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="review.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -285,6 +333,279 @@ ul.task-list li input[type="checkbox"] {
 <li>interpret what the summaries and graphs show</li>
 </ul>
 <p>This will demonstrate both tidyverse data wrangling and ggplot proficiency.</p>
+</section>
+<section id="loading-and-inspecting-the-data" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="loading-and-inspecting-the-data"><span class="header-section-number">8</span> Loading and inspecting the data</h2>
+<p>First, I want to load and read the data, so I can understand its format.</p>
+<section id="load-packages-and-data" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="load-packages-and-data"><span class="header-section-number">8.1</span> Load packages and data</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>data <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">'snooker_players_dataset.csv'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">view</span>(data)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">head</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 11
+  Player_ID Player_Name   Country   Age World_Ranking Matches_Played Matches_Won
+      &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;   &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt;       &lt;dbl&gt;
+1         1 Ronnie O'Sul… England    48             1           1200         850
+2         2 Judd Trump    England    34             2            950         650
+3         3 Mark Selby    England    40             3           1100         780
+4         4 Neil Roberts… Austra…    42             4           1000         700
+5         5 John Higgins  Scotla…    49             5           1300         820
+6         6 Mark Williams Wales      48             6           1200         780
+# ℹ 4 more variables: Matches_Lost &lt;dbl&gt;, Highest_Break &lt;dbl&gt;,
+#   Century_Breaks &lt;dbl&gt;, Prize_Money_USD &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>In this case, the data contains info on the player names, country of origins, rankings, match results, scoring statistics, and prize money earned. We have a nice mix of both categorical and quantitative variables, so we can practice our ggplot skills well here.</p>
+</section>
+<section id="select-important-data" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="select-important-data"><span class="header-section-number">8.2</span> Select important data</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">select</span>(Player_Name, Country, Age, World_Ranking, Matches_Won, Century_Breaks, Prize_Money_USD)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 7
+   Player_Name       Country     Age World_Ranking Matches_Won Century_Breaks
+   &lt;chr&gt;             &lt;chr&gt;     &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;
+ 1 Ronnie O'Sullivan England      48             1         850           1200
+ 2 Judd Trump        England      34             2         650            900
+ 3 Mark Selby        England      40             3         780            750
+ 4 Neil Robertson    Australia    42             4         700            800
+ 5 John Higgins      Scotland     49             5         820            850
+ 6 Mark Williams     Wales        48             6         780            700
+ 7 Ding Junhui       China        37             7         600            600
+ 8 Kyren Wilson      England      32             8         500            550
+ 9 Barry Hawkins     England      45             9         600            500
+10 Ali Carter        England      44            10         520            450
+# ℹ 1 more variable: Prize_Money_USD &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>This is a simple example of select(). It allows me to focus on the variables I want to analyze instead of always working with the full dataset.</p>
+</section>
+<section id="create-new-variables" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="create-new-variables"><span class="header-section-number">8.3</span> Create new variables</h3>
+<p>One of the most useful tools, <code>mutate()</code>, allows me to create new columns or variables from our dataset. For example, we will make two new variables, “win_percentage” and “prize_money_millions” so that we can get eahc player’s win percentage and their total prize money in the millions unit.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="at">Win_Percentage =</span> Matches_Won <span class="sc">/</span> Matches_Played,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="at">Prize_Money_Millions =</span> Prize_Money_USD <span class="sc">/</span> <span class="dv">1000000</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  )</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="fu">select</span>(Player_Name, Win_Percentage, Prize_Money_Millions)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 3
+   Player_Name       Win_Percentage Prize_Money_Millions
+   &lt;chr&gt;                      &lt;dbl&gt;                &lt;dbl&gt;
+ 1 Ronnie O'Sullivan          0.708                 14  
+ 2 Judd Trump                 0.684                  9  
+ 3 Mark Selby                 0.709                  8.5
+ 4 Neil Robertson             0.7                    8  
+ 5 John Higgins               0.631                  9.5
+ 6 Mark Williams              0.65                   7  
+ 7 Ding Junhui                0.667                  6.5
+ 8 Kyren Wilson               0.625                  5  
+ 9 Barry Hawkins              0.632                  4.5
+10 Ali Carter                 0.612                  4  </code></pre>
+</div>
+</div>
+</section>
+<section id="numerical-summaries-1" class="level3" data-number="8.4">
+<h3 data-number="8.4" class="anchored" data-anchor-id="numerical-summaries-1"><span class="header-section-number">8.4</span> Numerical Summaries</h3>
+<p>Now let’s use numerical summaries to better describe the distributions of our variables.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="at">mean_age =</span> <span class="fu">mean</span>(Age),</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">median_age =</span> <span class="fu">median</span>(Age),</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">mean_wins =</span> <span class="fu">mean</span>(Matches_Won),</span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="at">median_wins =</span> <span class="fu">median</span>(Matches_Won),</span>
+<span id="cb7-7"><a href="#cb7-7"></a>    <span class="at">mean_centuries =</span> <span class="fu">mean</span>(Century_Breaks),</span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="at">median_centuries =</span> <span class="fu">median</span>(Century_Breaks),</span>
+<span id="cb7-9"><a href="#cb7-9"></a>    <span class="at">mean_prize_money_millions =</span> <span class="fu">mean</span>(Prize_Money_Millions),</span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="at">median_prize_money_millions =</span> <span class="fu">median</span>(Prize_Money_Millions)</span>
+<span id="cb7-11"><a href="#cb7-11"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>    <span class="fu">pivot_longer</span>( <span class="co">#fancy stuff here to display, dont worry about it</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>    <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb7-14"><a href="#cb7-14"></a>    <span class="at">names_to =</span> <span class="st">"Statistic"</span>,</span>
+<span id="cb7-15"><a href="#cb7-15"></a>    <span class="at">values_to =</span> <span class="st">"Value"</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Statistic</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">mean_age</td>
+<td style="text-align: right;">41.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">median_age</td>
+<td style="text-align: right;">43.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mean_wins</td>
+<td style="text-align: right;">680.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">median_wins</td>
+<td style="text-align: right;">675.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mean_centuries</td>
+<td style="text-align: right;">730.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">median_centuries</td>
+<td style="text-align: right;">725.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mean_prize_money_millions</td>
+<td style="text-align: right;">7.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">median_prize_money_millions</td>
+<td style="text-align: right;">7.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Now, we get a better look of the mean and medians of each variable of all the players.</p>
+</section>
+<section id="grouped-summary-by-country" class="level3" data-number="8.5">
+<h3 data-number="8.5" class="anchored" data-anchor-id="grouped-summary-by-country"><span class="header-section-number">8.5</span> Grouped Summary by Country</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>country_summary <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">group_by</span>(Country) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="at">players =</span> <span class="fu">n</span>(),</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="at">mean_age =</span> <span class="fu">mean</span>(Age),</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="at">mean_wins =</span> <span class="fu">mean</span>(Matches_Won),</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="at">mean_centuries =</span> <span class="fu">mean</span>(Century_Breaks),</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="at">mean_prize_money_millions =</span> <span class="fu">mean</span>(Prize_Money_Millions)</span>
+<span id="cb8-9"><a href="#cb8-9"></a>  )</span>
+<span id="cb8-10"><a href="#cb8-10"></a>country_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  Country   players mean_age mean_wins mean_centuries mean_prize_money_millions
+  &lt;chr&gt;       &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;          &lt;dbl&gt;                     &lt;dbl&gt;
+1 Australia       1     42         700            800                       8  
+2 China           1     37         600            600                       6.5
+3 England         6     40.5       650            725                       7.5
+4 Scotland        1     49         820            850                       9.5
+5 Wales           1     48         780            700                       7  </code></pre>
+</div>
+</div>
+<p>This summary shows how we can use <code>group_by()</code> and <code>summarize()</code> to work together to describe stats by categories. Because this is a small data set, most countries only have 1 player, but this still represents a good example of a grouped summary.</p>
+</section>
+<section id="plot-1-century-breaks-by-player" class="level3" data-number="8.6">
+<h3 data-number="8.6" class="anchored" data-anchor-id="plot-1-century-breaks-by-player"><span class="header-section-number">8.6</span> Plot 1: Century breaks by player</h3>
+<p>Since <code>Player_Name</code> is categorical and <code>Century_Breaks</code> is quantitative, a bar chart is a good choice.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Player_Name, <span class="at">y =</span> Century_Breaks)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">xlab</span>(<span class="st">"Player"</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">ylab</span>(<span class="st">"Century Breaks"</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<figcaption>Century breaks by player</figcaption>
+<p><img src="review_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This graph makes it easy to compare players directly. A bar chart works well here because our goal is to compare one quantitative value against multiple categories (names).</p>
+</section>
+<section id="plot-2-matches-won-and-prize-money" class="level3" data-number="8.7">
+<h3 data-number="8.7" class="anchored" data-anchor-id="plot-2-matches-won-and-prize-money"><span class="header-section-number">8.7</span> Plot 2: Matches won and prize money</h3>
+<p>For two quantitative variables, our best option is a scatterplot.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Matches_Won, <span class="at">y =</span> Prize_Money_Millions)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">xlab</span>(<span class="st">"Matches won"</span>)<span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">ylab</span>(<span class="st">"Prize money (millions of USD)"</span>)<span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<figcaption>Matches won and prize money earned</figcaption>
+<p><img src="review_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This scatterplot helps show that players with more wins also tend to earn more prize money. In general, it makes sense that winning more creates more opportunities to earn more.</p>
+</section>
+<section id="plot-3-boxplot-of-century-breaks-by-country" class="level3" data-number="8.8">
+<h3 data-number="8.8" class="anchored" data-anchor-id="plot-3-boxplot-of-century-breaks-by-country"><span class="header-section-number">8.8</span> Plot 3: Boxplot of century breaks by country</h3>
+<p>Because century breaks is quntitative and country is qualitative, a boxplot is a good idea here.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Country, <span class="at">y =</span> Century_Breaks)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">xlab</span>(<span class="st">"Country"</span>)<span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">ylab</span>(<span class="st">"Century Breaks"</span>)<span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<figcaption>Century breaks by country</figcaption>
+<p><img src="review_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This boxplot compares the distribution of century breaks across countries. Boxplots are useful because they show the center, spread, and outliers of a quantitative variable within each category. The number of players per country is small, but it still demonstrates how boxplots can be used to compare groups.</p>
+</section>
+<section id="take-aways-from-our-analysis" class="level3" data-number="8.9">
+<h3 data-number="8.9" class="anchored" data-anchor-id="take-aways-from-our-analysis"><span class="header-section-number">8.9</span> Take aways from our analysis</h3>
+<p>We used a lot of key concepts from topic 2 here.</p>
+<p>First, tidyverse functions make analysis more readable and organized. I was able to move from importing the data, to selecting variables, to creating new variables, to grouped summaries in a clear process, that is easilly followed.</p>
+<p>Second, the type of variable matters when choosing a graph. I used bar charts when comparing a quantitative measurement across players, and scatterplots when comparing two quantitative variables.</p>
+<p>Third, <code>mutate()</code> is especially useful because it lets me create variables that are more meaningful than the originals. In this dataset, win percentage was more informative than raw wins alone, and prize money in millions was easier to interpret than large dollar amounts.</p>
+<p>Finally, the visualizations help communicate patterns more clearly than a table alone. For example, it is easier to compare century breaks or win percentages across players in a graph than by scanning rows of numbers.</p>
+</section>
+</section>
+<section id="conclusions" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="conclusions"><span class="header-section-number">9</span> Conclusions</h2>
+<p>Overall, this snooker dataset was a good example to test out some topics and skills from unit 2. It allowed me to combine data wrangling and data visualization in one work flow. Thank you for reading.</p>
 
 
 </section>
