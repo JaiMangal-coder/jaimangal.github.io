@@ -171,7 +171,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#what-is-the-tidyverse" id="toc-what-is-the-tidyverse" class="nav-link" data-scroll-target="#what-is-the-tidyverse"><span class="header-section-number">2</span> What is the tidyverse?</a></li>
+  <li><a href="#types-of-variables" id="toc-types-of-variables" class="nav-link" data-scroll-target="#types-of-variables"><span class="header-section-number">3</span> Types of variables</a></li>
+  <li><a href="#most-important-tools-we-used-in-tidyverse" id="toc-most-important-tools-we-used-in-tidyverse" class="nav-link" data-scroll-target="#most-important-tools-we-used-in-tidyverse"><span class="header-section-number">4</span> Most important tools we used in tidyverse</a></li>
+  <li><a href="#numerical-summaries" id="toc-numerical-summaries" class="nav-link" data-scroll-target="#numerical-summaries"><span class="header-section-number">5</span> Numerical summaries</a></li>
+  <li><a href="#introduction-to-ggplot2" id="toc-introduction-to-ggplot2" class="nav-link" data-scroll-target="#introduction-to-ggplot2"><span class="header-section-number">6</span> Introduction to ggplot2</a></li>
+  <li><a href="#time-to-apply-these-skills" id="toc-time-to-apply-these-skills" class="nav-link" data-scroll-target="#time-to-apply-these-skills"><span class="header-section-number">7</span> Time to apply these skills</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="review.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -197,9 +203,88 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1</span> Overview</h2>
-<p>This page reviews important ideas from Unit 2: the <strong>tidyverse</strong> and <strong>ggplot2</strong>.</p>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>Unit 2 focused on two tools for data analysis in R: the <strong>tidyverse</strong> and <strong>ggplot2</strong>. The tidyverse provides an easy and clean way to import, transform, and summarize data. ggplot2 provides a flexible way to build graphs that clearly communicate and summarize data.</p>
+<p>In this review, I will summarize the main ideas from Unit 2 and then apply them on a real dataset of professional snooker players. My goal is to create a nice guide on how and when to use the tidyverse and ggplot tools.</p>
+</section>
+<section id="what-is-the-tidyverse" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="what-is-the-tidyverse"><span class="header-section-number">2</span> What is the tidyverse?</h2>
+<p>The tidyverse is a collection of packages made to make data science a tad easier. In class, we used tidyverse tools to read in .csv files, manipulate data, create new variables, filter observations, and compute summary statistics.</p>
+<p>One major benefit of the tidyverse is its readability. Using the pipe operator, we can easily pass data in through steps, which makes the logic of both reading and writing the code much easier to follow. This is especially useful when cleaning data.</p>
+</section>
+<section id="types-of-variables" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="types-of-variables"><span class="header-section-number">3</span> Types of variables</h2>
+<p>Another important part of Unit 2 is recognizing the different kinds of variables, because the type of variable affects both the summaries and the plots that make sense to use.</p>
+<p>A <strong>categorical variable</strong> is simple and places qualitative observations into groups or categories.</p>
+<p>A <strong>quantitative variable</strong> records quantitative values. These could be either:</p>
+<ul>
+<li><strong>continuous</strong>, measured data</li>
+<li><strong>discrete</strong>, counted data</li>
+</ul>
+<p>Understanding what kind of data you have is important in figuring out what kind of numerical summaries or visualizations you should provide.</p>
+</section>
+<section id="most-important-tools-we-used-in-tidyverse" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="most-important-tools-we-used-in-tidyverse"><span class="header-section-number">4</span> Most important tools we used in tidyverse</h2>
+<ul>
+<li><code>tibble()</code>, to create an enhanced data frame</li>
+<li><code>read_csv()</code>, to import data</li>
+<li><code>filter()</code>, to keep rows based on conditions</li>
+<li><code>mutate()</code>, to create or modify columns</li>
+<li><code>group_by()</code>, to specify a group</li>
+<li><code>summarize()</code>, to compute summaries</li>
+<li><code>select()</code>, to select one or more columns as a data frame</li>
+<li><code>case_when()</code>, to compute multiple if_else() statements</li>
+</ul>
+<p>These tools make it easier to move from raw data to summaries in a very understandable process.</p>
+</section>
+<section id="numerical-summaries" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="numerical-summaries"><span class="header-section-number">5</span> Numerical summaries</h2>
+<p>We also learned how to describe data numerically. Depending on the type of variable and the shape of the distribution, different summaries are better.</p>
+<p>Some of the main summaries we used were:</p>
+<ul>
+<li>mean</li>
+<li>standard deviation</li>
+<li>median</li>
+<li>interquartile ranges</li>
+<li>counts</li>
+<li>proportions</li>
+<li>grouped summaries for comparing categories</li>
+</ul>
+<p>For example, if a variable is skewed, the median and IQR may describe the center and spread better than the mean and standard deviation. If the variable is categorical, proportions are more useful than using an average.</p>
+</section>
+<section id="introduction-to-ggplot2" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="introduction-to-ggplot2"><span class="header-section-number">6</span> Introduction to ggplot2</h2>
+<p><code>ggplot2</code> is a plotting system that drastically makes it easier to plot and graph. ggplot builds a plot by combining lines, making it easier to modularly create your graph. This usually includes:</p>
+<ul>
+<li>the dataset</li>
+<li>aesthetic decisions in <code>aes()</code></li>
+<li>specified type of plot such as bars, points, or boxes</li>
+<li>axis labels</li>
+<li>a theme</li>
+</ul>
+<p>This approach makes plots easier to customize and helps explain what each part of a graph is doing.</p>
+<p>We also learned that plot choice depends on the type of variables involved. For example:</p>
+<ul>
+<li>one categorical variable -&gt; bar plot</li>
+<li>one quantitative variable -&gt; histogram</li>
+<li>one categorical and one quantitative variable -&gt; boxplot or violin plot</li>
+<li>two quantitative variables -&gt; scatterplot</li>
+</ul>
+<p>This framework is useful because it gives a logical reason for choosing one graph over another, rather than just picking a graph that looks nice.</p>
+</section>
+<section id="time-to-apply-these-skills" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="time-to-apply-these-skills"><span class="header-section-number">7</span> Time to apply these skills</h2>
+<p>To review this unit, I will use a dataset on professional snooker players. This dataset includes both categorical and quantitative variables, which makes it a good fit.</p>
+<p>Using this dataset, I will:</p>
+<ul>
+<li>inspect the structure of the data</li>
+<li>create new variables with <code>mutate()</code></li>
+<li>compute summary statistics</li>
+<li>build visualizations</li>
+<li>interpret what the summaries and graphs show</li>
+</ul>
+<p>This will demonstrate both tidyverse data wrangling and ggplot proficiency.</p>
 
 
 </section>

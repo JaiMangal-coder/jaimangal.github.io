@@ -364,17 +364,77 @@
     "href": "Unit2Review/review.html",
     "title": "Unit 2 Review – tidyverse and ggplot",
     "section": "",
-    "text": "This page reviews important ideas from Unit 2: the tidyverse and ggplot2.",
+    "text": "Unit 2 focused on two tools for data analysis in R: the tidyverse and ggplot2. The tidyverse provides an easy and clean way to import, transform, and summarize data. ggplot2 provides a flexible way to build graphs that clearly communicate and summarize data.\nIn this review, I will summarize the main ideas from Unit 2 and then apply them on a real dataset of professional snooker players. My goal is to create a nice guide on how and when to use the tidyverse and ggplot tools.",
     "crumbs": [
       "Unit 2 Review -- tidyverse and ggplot"
     ]
   },
   {
-    "objectID": "Unit2Review/review.html#overview",
-    "href": "Unit2Review/review.html#overview",
+    "objectID": "Unit2Review/review.html#introduction",
+    "href": "Unit2Review/review.html#introduction",
     "title": "Unit 2 Review – tidyverse and ggplot",
     "section": "",
-    "text": "This page reviews important ideas from Unit 2: the tidyverse and ggplot2.",
+    "text": "Unit 2 focused on two tools for data analysis in R: the tidyverse and ggplot2. The tidyverse provides an easy and clean way to import, transform, and summarize data. ggplot2 provides a flexible way to build graphs that clearly communicate and summarize data.\nIn this review, I will summarize the main ideas from Unit 2 and then apply them on a real dataset of professional snooker players. My goal is to create a nice guide on how and when to use the tidyverse and ggplot tools.",
+    "crumbs": [
+      "Unit 2 Review -- tidyverse and ggplot"
+    ]
+  },
+  {
+    "objectID": "Unit2Review/review.html#what-is-the-tidyverse",
+    "href": "Unit2Review/review.html#what-is-the-tidyverse",
+    "title": "Unit 2 Review – tidyverse and ggplot",
+    "section": "2 What is the tidyverse?",
+    "text": "2 What is the tidyverse?\nThe tidyverse is a collection of packages made to make data science a tad easier. In class, we used tidyverse tools to read in .csv files, manipulate data, create new variables, filter observations, and compute summary statistics.\nOne major benefit of the tidyverse is its readability. Using the pipe operator, we can easily pass data in through steps, which makes the logic of both reading and writing the code much easier to follow. This is especially useful when cleaning data.",
+    "crumbs": [
+      "Unit 2 Review -- tidyverse and ggplot"
+    ]
+  },
+  {
+    "objectID": "Unit2Review/review.html#types-of-variables",
+    "href": "Unit2Review/review.html#types-of-variables",
+    "title": "Unit 2 Review – tidyverse and ggplot",
+    "section": "3 Types of variables",
+    "text": "3 Types of variables\nAnother important part of Unit 2 is recognizing the different kinds of variables, because the type of variable affects both the summaries and the plots that make sense to use.\nA categorical variable is simple and places qualitative observations into groups or categories.\nA quantitative variable records quantitative values. These could be either:\n\ncontinuous, measured data\ndiscrete, counted data\n\nUnderstanding what kind of data you have is important in figuring out what kind of numerical summaries or visualizations you should provide.",
+    "crumbs": [
+      "Unit 2 Review -- tidyverse and ggplot"
+    ]
+  },
+  {
+    "objectID": "Unit2Review/review.html#most-important-tools-we-used-in-tidyverse",
+    "href": "Unit2Review/review.html#most-important-tools-we-used-in-tidyverse",
+    "title": "Unit 2 Review – tidyverse and ggplot",
+    "section": "4 Most important tools we used in tidyverse",
+    "text": "4 Most important tools we used in tidyverse\n\ntibble(), to create an enhanced data frame\nread_csv(), to import data\nfilter(), to keep rows based on conditions\nmutate(), to create or modify columns\ngroup_by(), to specify a group\nsummarize(), to compute summaries\nselect(), to select one or more columns as a data frame\ncase_when(), to compute multiple if_else() statements\n\nThese tools make it easier to move from raw data to summaries in a very understandable process.",
+    "crumbs": [
+      "Unit 2 Review -- tidyverse and ggplot"
+    ]
+  },
+  {
+    "objectID": "Unit2Review/review.html#numerical-summaries",
+    "href": "Unit2Review/review.html#numerical-summaries",
+    "title": "Unit 2 Review – tidyverse and ggplot",
+    "section": "5 Numerical summaries",
+    "text": "5 Numerical summaries\nWe also learned how to describe data numerically. Depending on the type of variable and the shape of the distribution, different summaries are better.\nSome of the main summaries we used were:\n\nmean\nstandard deviation\nmedian\ninterquartile ranges\ncounts\nproportions\ngrouped summaries for comparing categories\n\nFor example, if a variable is skewed, the median and IQR may describe the center and spread better than the mean and standard deviation. If the variable is categorical, proportions are more useful than using an average.",
+    "crumbs": [
+      "Unit 2 Review -- tidyverse and ggplot"
+    ]
+  },
+  {
+    "objectID": "Unit2Review/review.html#introduction-to-ggplot2",
+    "href": "Unit2Review/review.html#introduction-to-ggplot2",
+    "title": "Unit 2 Review – tidyverse and ggplot",
+    "section": "6 Introduction to ggplot2",
+    "text": "6 Introduction to ggplot2\nggplot2 is a plotting system that drastically makes it easier to plot and graph. ggplot builds a plot by combining lines, making it easier to modularly create your graph. This usually includes:\n\nthe dataset\naesthetic decisions in aes()\nspecified type of plot such as bars, points, or boxes\naxis labels\na theme\n\nThis approach makes plots easier to customize and helps explain what each part of a graph is doing.\nWe also learned that plot choice depends on the type of variables involved. For example:\n\none categorical variable -&gt; bar plot\none quantitative variable -&gt; histogram\none categorical and one quantitative variable -&gt; boxplot or violin plot\ntwo quantitative variables -&gt; scatterplot\n\nThis framework is useful because it gives a logical reason for choosing one graph over another, rather than just picking a graph that looks nice.",
+    "crumbs": [
+      "Unit 2 Review -- tidyverse and ggplot"
+    ]
+  },
+  {
+    "objectID": "Unit2Review/review.html#time-to-apply-these-skills",
+    "href": "Unit2Review/review.html#time-to-apply-these-skills",
+    "title": "Unit 2 Review – tidyverse and ggplot",
+    "section": "7 Time to apply these skills",
+    "text": "7 Time to apply these skills\nTo review this unit, I will use a dataset on professional snooker players. This dataset includes both categorical and quantitative variables, which makes it a good fit.\nUsing this dataset, I will:\n\ninspect the structure of the data\ncreate new variables with mutate()\ncompute summary statistics\nbuild visualizations\ninterpret what the summaries and graphs show\n\nThis will demonstrate both tidyverse data wrangling and ggplot proficiency.",
     "crumbs": [
       "Unit 2 Review -- tidyverse and ggplot"
     ]
